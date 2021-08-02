@@ -24,4 +24,5 @@ class Base:
         self.base_find_element(loc).click()
 
     def base_get_text(self,loc):
+        print("这是leaf01分支的操作")
         return self.base_find_element(loc).text
