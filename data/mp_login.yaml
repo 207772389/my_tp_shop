@@ -1,0 +1,8 @@
+mp_login001:
+  username: "shangqianchen"
+  code: "picooc_123"
+  expect: "尚前"
+#mp_login002:
+#  username: "13000000"
+#  code: "323232"
+#  expect: "123333344"
