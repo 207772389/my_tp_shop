@@ -1,7 +1,7 @@
-from base.base import Base
+from base.web_base import WebBase
 
 
-class PageMpLogin(Base):
+class PageMpLogin(WebBase):
 
     def pagelogin_input_username(self):
         pass
@@ -18,4 +18,10 @@ class PageMpLogin(Base):
     def pagelogin_mp_login(self,username,pwd):
         self.pagelogin_input_username(username)
         self.pagelogin_input_pwd(pwd)
+        self.pagelogin_click_login_btn()
+
+    #组合业务方法》发布文章前调用，登录进去
+    def pagelogin_mp_login(self, username="shangqianchen", pwd="picooc_123"):
+        self.pagelogin_input_username(username)
+        self.pagelogin_input_code(pwd)
         self.pagelogin_click_login_btn()
