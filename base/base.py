@@ -26,4 +26,5 @@ class Base:
     def base_get_text(self,loc):
         print("这是leaf01分支的操作")
         print("master合并leaf01之后的操作")
+        print("这是leaf03分支的操作")
         return self.base_find_element(loc).text
