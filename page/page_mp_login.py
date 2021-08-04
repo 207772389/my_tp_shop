@@ -22,3 +22,4 @@ class PageMpLogin(Base):
         self.pagelogin_input_username(username)
         self.pagelogin_input_pwd(pwd)
         self.pagelogin_click_login_btn()
+        print("测试下push地址")
