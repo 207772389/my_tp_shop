@@ -1,5 +1,8 @@
 from selenium.webdriver.support.wait import WebDriverWait
 
+from tools.get_log import GetLog
+
+log = GetLog.get_logger()
 
 class Base:
 
@@ -15,16 +18,16 @@ class Base:
         :param poll:查找元素的频率，默认0.5秒
         :return:返回查找到的元素
         '''
+        log.info("正在查找元素：{}".format(loc))
         return WebDriverWait(self.driver,timeout=timeout,poll_frequency=poll).until(lambda x : x.find_element(*loc))
 
     def base_input(self,loc,value):
-        self.base_find_element(loc).clear().send_keys(value)
+        el = self.base_find_element(loc)
+        el.clear()
+        el.send_keys(value)
 
     def base_click(self,loc):
         self.base_find_element(loc).click()
 
     def base_get_text(self,loc):
-        print("这是leaf01分支的操作")
-        print("master合并leaf01之后的操作")
-        print("这是leaf03分支的操作")
         return self.base_find_element(loc).text

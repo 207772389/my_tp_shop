@@ -22,7 +22,7 @@ class TestMpLogin:
     #初始化
     def setup_class(self):
         #获取driver
-        driver = GetDriver.get_web_driver(page.url_mp)
+        driver = GetDriver.get_web_driver(page.admin_url)
         #通过统一入口类获取mp_login页面对象
         self.mp = PageIn(driver).pagein_get_PageMpLogin()
 

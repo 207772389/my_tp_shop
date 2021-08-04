@@ -11,6 +11,7 @@ import logging.handlers
 import os
 
 from config import BASE_PATH
+import time
 
 
 
@@ -28,7 +29,7 @@ class GetLog:
             #修改日志器默认级别
             cls.__logger.setLevel(logging.INFO)
             #获取处理器 这里使用时间切片处理器\
-            log_path = BASE_PATH + os.sep +"log"+os.sep+"picooc.log"
+            log_path = BASE_PATH + os.sep +"log"+os.sep+"picooc_{}.log".format(time.strftime("%Y-%m-%d %H-%M-%S"))
             th = logging.handlers.TimedRotatingFileHandler(filename=log_path,
                                                            when="midnight",
                                                            interval=1,
