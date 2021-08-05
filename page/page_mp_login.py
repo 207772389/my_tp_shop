@@ -1,8 +1,10 @@
-from base.base import Base
-import page
 from time import sleep
 
-class PageMpLogin(Base):
+import page
+from base.web_base import WebBase
+
+
+class PageMpLogin(WebBase):
 
     def pagelogin_input_username(self,username):
         self.base_input(page.mp_username,username)
@@ -22,4 +24,9 @@ class PageMpLogin(Base):
         self.pagelogin_input_username(username)
         self.pagelogin_input_pwd(pwd)
         self.pagelogin_click_login_btn()
-        print("测试下push地址")
+
+    #组合业务方法》发布文章依赖调用
+    def pagelogin_mp_login_sucess(self,username="shangqianchen",pwd="picooc_123"):
+        self.pagelogin_input_username(username)
+        self.pagelogin_input_pwd(pwd)
+        self.pagelogin_click_login_btn()

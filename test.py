@@ -7,6 +7,15 @@
 @Motto：ABC(Always Be Coding)
 
 """
-import sys
+# import sys
+#
+# print(sys.executable)
+import random
 
-print(sys.executable)
+from xlrd.timemachine import xrange
+
+for i in range(1,5):
+    num =random.randint(1,10)
+    random.random
+    data = "abcd%def" %num
+    print(data)
