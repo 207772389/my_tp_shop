@@ -11,6 +11,9 @@ import page
 from base.web_base import WebBase
 from time import sleep
 
+from tools.get_log import GetLog
+
+log = GetLog.get_logger()
 
 class PageAddPd(WebBase):
 
@@ -19,9 +22,9 @@ class PageAddPd(WebBase):
         self.base_click(page.pd_list_add_btn)
 
     #输入商品标题
-    def addpd_input_pd_title(self,value):
+    def addpd_input_pd_title(self,pdtitle):
         sleep(1)
-        self.base_input(page.pd_adding_pd_title,value,ele = 2)
+        self.base_input(page.pd_adding_pd_title,pdtitle,ele = 2)
     #选择商品类型
     def addpd_choose_pd_type(self):
         # 先点击输入框
@@ -44,15 +47,15 @@ class PageAddPd(WebBase):
         self.base_click(page.pd_adding_evluation)
 
     #输入商品名称
-    def addpd_input_pd_name(self):
-        self.base_input(page.pd_adding_pd_name,"我是商品名称",3)
+    def addpd_input_pd_name(self,value):
+        self.base_input(page.pd_adding_pd_name,value,3)
 
     #输入分享标题
-    def addpd_input_share_title(self):
+    def addpd_input_share_title(self,value):
         self.base_input(page.pd_adding_share_title)
 
     #输入分享描述
-    def addpd_input_share_info(self):
+    def addpd_input_share_info(self,value):
         self.base_input(page.pd_adding_share_info)
 
     #保存按钮
@@ -62,13 +65,53 @@ class PageAddPd(WebBase):
 
 
     #业务组合方法
-    def addpd_test(self,value):
+    def addpd_test(self,pdtitle,pdname,sharetitle,shareinfo):
+        log.info("正在调用新增商品的业务组合方法")
         self.base_click(page.pd_list_add_btn)
-        self.addpd_input_pd_title(value)
+        self.addpd_input_pd_title(pdtitle)
         self.addpd_choose_pd_type()
         self.addpd_choose_time()
         self.addpd_choose_evaluation()
-        self.addpd_input_pd_name()
-        self.addpd_input_share_title()
-        self.addpd_input_share_info()
+        self.addpd_input_pd_name(pdname)
+        self.addpd_input_share_title(sharetitle)
+        self.addpd_input_share_info(shareinfo)
         self.addpd_click_save_btn()
+
+    #新增商品后回到商品列表，先点击状态，选择编辑中，获取第一个编辑的商品即为新增的商品
+    def addpd_click_status(self):
+        log.info("正在切换状态。。。")
+        #先点击状态
+        self.base_click(page.pd_list_status)
+        #下拉框中选择 编辑中
+        self.base_click(page.pd_list_choose_status,2)
+
+    #新增商品后 获取待编辑中的商品名称 给断言用
+    def addpd_get_pd_name(self):
+        log.info("正在获取商品列表的商品名称")
+        #先调用上面的方法把状态切换为 编辑中
+        self.addpd_click_status()
+        return self.base_get_text(page.pd_list_pd_name,3)
+
+    #提交审批
+    def addpd_submit_sp(self):
+        pass
+
+    #切换状态为待审批 然后点击通过按钮
+    def addpd_submit_pass(self):
+        pass
+
+
+    #切换状态为待上架 然后点击上架按钮
+    def addpd_submit_up(self):
+        pass
+
+    #切换状态为已上架 然后点击已下架按钮
+    def addpd_submit_down(self):
+        pass
+
+    #提交流程来个业务组合
+    def addpd_test_submit_process(self):
+        self.addpd_submit_sp()
+        self.addpd_submit_pass()
+        self.addpd_submit_up()
+        self.addpd_submit_down()

@@ -12,6 +12,9 @@ from page.page_in import PageIn
 from tools.get_driver import GetDriver
 from time import sleep
 
+from tools.get_log import GetLog
+
+log = GetLog.get_logger()
 class TestAddPd:
 
     def setup_class(self):
@@ -28,4 +31,19 @@ class TestAddPd:
         sleep(3)
         GetDriver.quit_web_driver()
     def test_add_pd(self):
-        self.add_pd.addpd_test("我是商品标题")
+        self.add_pd.addpd_test("我是商品标题","我是商品名称","我是分享标题","我是分享描述")
+        sleep(1)
+        pd_name = self.add.pd.addpd_get_pd_name()
+        try:
+            assert "我是商品名称"==pd_name
+        except Exception as e:
+            #截图
+            self.add_pd.base_get_screen_shot()
+            #日志
+            log.error("新建的商品名称：{}没有找到！！！\n 错误信息为：{}".format("我是商品名称",e))
+            #抛异常
+            raise
+
+    #新建商品成功后 开始进入商品的提交审核流程
+    def test_pd_submit_process(self):
+        pass

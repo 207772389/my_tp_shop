@@ -19,6 +19,14 @@ admin_url = "http://promoting-admin.picooc.com/#/user/login"
 pd_list_add_btn = (By.XPATH, "//*[text()='新建']/parent::button")
 # 状态
 pd_list_status = (By.CSS_SELECTOR, "#status")
+#点击状态后 下拉列表里选择编辑中，注意：这里返回的是元素列表，选择第一个即可
+pd_list_choose_status = (By.XPATH,"//*[text()='编辑中']")
+#商品名称：注意：这里是返回了元素列表，要取第二个元素
+pd_list_pd_name = (By.CSS_SELECTOR,".ant-table-tbody>tr>td")
+#提交审批按钮,注意：这里返回的是元素列表，取第一个值即可
+pd_list_sumit_sp=(By.XPATH,"//*[text()='提交审批']")
+
+
 
 """以下为新增商品页面的配置元素"""
 
@@ -46,3 +54,4 @@ pd_adding_share_title = (By.CSS_SELECTOR, "#shareTitle")
 pd_adding_share_info = (By.CSS_SELECTOR, "#shareInfo")
 # 保存按钮
 pd_adding_save_btn = (By.XPATH, "//*[text()='保 存']/parent::button")
+
