@@ -102,3 +102,21 @@ pd_adding_share_info = (By.CSS_SELECTOR, "#shareInfo")
 pd_adding_save_btn = (By.XPATH, "//*[text()='保 存']/parent::button")
 # 确认保存的弹框上的确认按钮
 pd_adding_makesure_ok = (By.XPATH, "//*[text()='确 认']/parent::button")
+
+"""以下信息为APP登录相关的配置信息"""
+#app的包名
+appPackage = "com.picooc"
+#app的启动页
+appActivity="com.picooc.activity.start.WelcomeActivity"
+#注册登录按钮
+app_login_enter_btn = (By.ID,"com.picooc:id/login_text")
+#输入手机号
+app_login_input_phone_num = (By.ID,"com.picooc:id/phone_register")
+#同意隐私协议选项
+app_login_agree_check=(By.ID,"com.picooc:id/agree_selector")
+#输入登录密码
+app_login_input_pwd=(By.ID,"com.picooc:id/pwd")
+#登录按钮
+app_login_btn=(By.ID,"com.picooc:id/btn_login")
+#进入首页后 通过获取页面顶部的 首页 文案，来判断登录成功了。注意：这里返回的是元素列表，记得取第一个即可
+app_login_success=(By.ID,"com.picooc:id/tv_tab_name")
