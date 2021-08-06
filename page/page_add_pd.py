@@ -54,17 +54,17 @@ class PageAddPd(WebBase):
 
     # 输入分享标题
     def addpd_input_share_title(self, value):
-        self.base_input(page.pd_adding_share_title,value)
+        self.base_input(page.pd_adding_share_title, value)
 
     # 输入分享描述
     def addpd_input_share_info(self, value):
-        self.base_input(page.pd_adding_share_info,value)
+        self.base_input(page.pd_adding_share_info, value)
 
     # 保存按钮
     def addpd_click_save_btn(self):
         self.base_click(page.pd_adding_save_btn)
 
-    #确认弹框上的确认按钮
+    # 确认弹框上的确认按钮
     def addpd_click_makesure_ok(self):
         self.base_click(page.pd_adding_makesure_ok)
 
@@ -94,31 +94,126 @@ class PageAddPd(WebBase):
     def addpd_get_pd_name(self):
         log.info("正在获取商品列表的商品名称")
         # 先调用上面的方法把状态切换为 编辑中
-        self.addpd_click_status()
+        # self.addpd_click_status()
         return self.base_get_text(page.pd_list_pd_name, 3)
 
-    # 切换状态为编辑中 点击提交审批
-    def addpd_submit_sp(self):
-        #切换到编辑中
-        pass
+    """至此，商品新建成功了，以下开始新建sku"""
 
-        #点击提交审批
+    # 新增商品后 开始新增sku，点击sku管理按钮
+    def addpd_click_addsku_manage(self):
+        log.info("开始新建新建sku了")
+        self.base_click(page.pd_list_sku_manage, 1)
 
-    # 切换状态为待审批 然后点击通过按钮
-    def addpd_submit_pass(self):
-        pass
+    # 进入新增sku界面,点击 新建sku
+    def addpd_click_addsku(self):
+        self.base_click(page.pd_list_add_sku)
 
-    # 切换状态为待上架 然后点击上架按钮
-    def addpd_submit_up(self):
-        pass
+    # 进入新增sku
+    def addpd_click_addsku_btn(self):
+        self.base_click(page.pd_list_addsku_btn)
 
-    # 切换状态为已上架 然后点击已下架按钮
-    def addpd_submit_down(self):
-        pass
+    # 进入sku输入页面 开始编辑操作
+    def addpd_input_sku_period(self, period):
+        self.base_input(page.pd_list_addsku_period, period)
 
-    # 提交流程来个业务组合
-    def addpd_test_submit_process(self):
-        self.addpd_submit_sp()
-        self.addpd_submit_pass()
-        self.addpd_submit_up()
-        self.addpd_submit_down()
+    # 选择开营时间
+    def addpd_choose_sku_starttime(self):
+        # 先点击弹出选择器
+        self.base_click(page.pd_list_addsku_starttime_btn)
+        # 再点击选择日期
+        self.base_click(page.pd_list_addsk_choose_starttime)
+        # 再点击选择器上的确定按钮
+        self.base_click(page.pd_list_addsku_starttime_ok)
+
+    # 输入sku名称
+    def addpd_input_skuname(self, skuname):
+        self.base_input(page.pd_list_addsku_skuname, skuname)
+
+    # 输入原价
+    def addpd_input_origin_price(self, originprice):
+        self.base_input(page.pd_list_addsku_originprice, originprice)
+
+    # 输入特价
+    def addpd_input_especial_price(self, especialprice):
+        self.base_input(page.pd_list_addsku_especialprice, especialprice)
+
+    # 点击上面的保存按钮
+    def addpd_addsku_first_savebtn(self):
+        self.base_click(page.pd_list_addsku_first_savebtn)
+
+    # 点击下面的保存按钮
+    def addpd_addsku_second_savebtn(self):
+        log.info("sku新建成功了，sku is done!")
+        self.base_click(page.pd_list_addsku_second_savebtn)
+
+    """至此，sku就新建完成了，返回到了sku列表页面，以下开始提交sku到上架状态"""
+
+    # 点击提交审批
+    def addpd_skulist_click_sp(self):
+        sleep(1)
+        self.base_click(page.pd_list_addsku_skulist_sp)
+
+    # 审批通过后 点击通过
+    def addpd_skulist_click_pass(self):
+        sleep(1)
+        self.base_click(page.pd_list_addsku_skulist_pass_sp)
+
+    # 通过后，就点击上架了
+    def addpd_skulist_click_sj(self):
+        log.info("恭喜，sku已经成功上架了！！！")
+        sleep(1)
+        self.base_click(page.pd_list_addsku_skulist_sj)
+
+    """至此，sku状态变为上架了，点击 商品列表 回到商品列表页面，开始把商品状态变为上架"""
+
+    # 点击左边导航栏的 商品列表
+    def addpd_click_pdlist(self):
+        self.base_click(page.pd_list_click_pdlist)
+
+    # 点击商品后面的提交审批开始审批流程了 点击 提交审批
+    def addpd_pdlist_click_sp(self):
+        sleep(1)
+        self.base_click(page.pd_list_submit_sp, 2)
+
+    # 审批后，点击通过
+    def addpd_pdlist_click_pass(self):
+        sleep(1)
+        self.base_click(page.pd_list_click_pass, 2)
+
+    # 通过后，点击上架
+    def addpd_pdlist_click_sj(self):
+        sleep(1)
+        log.info("商品成功上架了")
+        self.base_click(page.pd_list_click_sj, 2)
+
+    # 添加sku业务方法+商品提交上架 组合
+    def addpd_add_sku(self, period, skuname, originprice, especialprice):
+        """
+
+        :param period: sku的开营周期
+        :param skuname: sku的名称
+        :param originprice: sku的原价
+        :param especialprice: sku的特价
+        :return:
+        """
+        self.addpd_click_addsku_manage()
+        self.addpd_click_addsku()
+        self.addpd_click_addsku_btn()
+        self.addpd_input_sku_period(period)
+        self.addpd_choose_sku_starttime()
+        self.addpd_input_skuname(skuname)
+        self.addpd_input_origin_price(originprice)
+        self.addpd_input_especial_price(especialprice)
+        self.addpd_addsku_first_savebtn()
+        self.addpd_addsku_second_savebtn()
+        self.addpd_skulist_click_sp()
+        self.addpd_skulist_click_pass()
+        self.addpd_skulist_click_sj()
+        self.addpd_click_pdlist()
+        self.addpd_pdlist_click_sp()
+        self.addpd_pdlist_click_pass()
+        self.addpd_pdlist_click_sj()
+
+    #商品上架后 获取商品的上架状态》断言时调用
+    def addpd_get_pd_status(self):
+        return self.base_get_text(page.pd_list_get_pd_status)

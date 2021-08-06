@@ -45,8 +45,21 @@ class TestAddPd:
             log.error("新建的商品名称：{}没有找到！！！\n 错误信息为：{}".format("我是商品名称",e))
             #抛异常
             raise
-
+        # self.add_pd.addpd_add_sku("4", "四周班测试", "1000", "699")
     #新建商品成功后 开始进入商品的提交审核流程
     @pytest.mark.skip(reason='这个用例还没写好，暂时不执行哈！')
     def test_pd_submit_process(self):
         pass
+
+    def test_add_sku(self):
+        self.add_pd.addpd_add_sku("4","四周班测试","1000","699")
+        try:
+            assert "已上架"== self.add_pd.addpd_get_pd_status()
+            log.info("商品已经成功上架了！！！")
+        except Exception as e:
+            #截图
+            self.add_pd.base_get_screen_shot()
+            #日志
+            log.error("商品的状态不对，是不是没有上架？错误的原因是：{}".format(e))
+            #抛异常
+            raise
