@@ -60,7 +60,7 @@ class Base:
     def base_get_screen_shot(self):
         #调用截图方法
         log.error("断言出错啦，开始截图了！！！")
-        self.img_path = BASE_PATH + os.sep+"image"+os.sep+"error_img_{}".format(time.strptime("%Y-%m-%d %H-%M-%S"))
+        self.img_path = BASE_PATH + os.sep+"image"+os.sep+"error_img_{}".format(time.strftime("%Y-%m-%d %H-%M-%S"))
         self.driver.get_screenshot_as_file(self.img_path)
         #调用下面的图片写入报告方法
 

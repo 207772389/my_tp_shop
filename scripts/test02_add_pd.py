@@ -7,6 +7,8 @@
 @Motto：ABC(Always Be Coding)
 
 """
+import pytest
+
 import page
 from page.page_in import PageIn
 from tools.get_driver import GetDriver
@@ -28,14 +30,14 @@ class TestAddPd:
         self.add_pd = self.page_in.pagein_get_PageAddPd()
 
     def teardown_class(self):
-        sleep(3)
+        sleep(8)
         GetDriver.quit_web_driver()
     def test_add_pd(self):
         self.add_pd.addpd_test("我是商品标题","我是商品名称","我是分享标题","我是分享描述")
         sleep(1)
-        pd_name = self.add.pd.addpd_get_pd_name()
+        pd_name = self.add_pd.addpd_get_pd_name()
         try:
-            assert "我是商品名称"==pd_name
+            assert "我是商品标题"==pd_name
         except Exception as e:
             #截图
             self.add_pd.base_get_screen_shot()
@@ -45,5 +47,6 @@ class TestAddPd:
             raise
 
     #新建商品成功后 开始进入商品的提交审核流程
+    @pytest.mark.skip(reason='这个用例还没写好，暂时不执行哈！')
     def test_pd_submit_process(self):
         pass
