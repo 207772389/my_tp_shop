@@ -114,6 +114,8 @@ app_login_enter_btn = (By.ID,"com.picooc:id/login_text")
 app_login_input_phone_num = (By.ID,"com.picooc:id/phone_register")
 #同意隐私协议选项
 app_login_agree_check=(By.ID,"com.picooc:id/agree_selector")
+#输入手机号后 点击下一步
+app_login_next_btn = (By.ID,"com.picooc:id/btn_get_identifying_code_register")
 #输入登录密码
 app_login_input_pwd=(By.ID,"com.picooc:id/pwd")
 #登录按钮

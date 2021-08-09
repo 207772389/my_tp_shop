@@ -8,6 +8,7 @@
 
 """
 from selenium import webdriver
+import appium.webdriver
 
 import page
 from time import sleep
@@ -15,7 +16,7 @@ from time import sleep
 class GetDriver:
     # 为了避免通过类名.driver来调用，只能通过get方法来获取driver
     # 搞一个私有的类属性
-    __driver = None
+    __web_driver = None
     # 定义私有属性
     __app_driver = None
 
@@ -23,21 +24,21 @@ class GetDriver:
     @classmethod
     def get_web_driver(cls, url):
         # 如果driver为None
-        if cls.__driver is None:
+        if cls.__web_driver is None:
             # 获取driver
-            cls.__driver = webdriver.Chrome()
+            cls.__web_driver = webdriver.Chrome()
             # 设置driver
-            cls.__driver.maximize_window()
+            cls.__web_driver.maximize_window()
             # 打开url
-            cls.__driver.get(url)
-        return cls.__driver
+            cls.__web_driver.get(url)
+        return cls.__web_driver
 
     @classmethod
     def quit_web_driver(cls):
-        if cls.__driver:
-            cls.__driver.quit()
+        if cls.__web_driver:
+            cls.__web_driver.quit()
             # 这里一定记得置空操作
-            cls.__driver = None
+            cls.__web_driver = None
 
     @classmethod
     def get_app_driver(cls):
@@ -49,7 +50,8 @@ class GetDriver:
             desired_caps['noReset'] = True
             desired_caps["appPackage"] = page.appPackage
             desired_caps["appActivity"] = page.appActivity
-            cls.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+            cls.__app_driver = appium.webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        print("*************app_driver************是：",cls.__app_driver)
         return cls.__app_driver
 
     @classmethod
