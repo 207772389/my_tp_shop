@@ -122,3 +122,6 @@ app_login_input_pwd=(By.ID,"com.picooc:id/pwd")
 app_login_btn=(By.ID,"com.picooc:id/btn_login")
 #进入首页后 通过获取页面顶部的 首页 文案，来判断登录成功了。注意：这里返回的是元素列表，记得取第一个即可
 app_login_success=(By.ID,"com.picooc:id/tv_tab_name")
+
+#滑动区域
+app_channel_area = By.XPATH,"//*[@class='android.widget.HorizontalScrollView']"

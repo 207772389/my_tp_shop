@@ -7,5 +7,10 @@ class20
 1.获取driver和退出driver，方法使用类方法，方便调用，不用实例化
 2.driver为类属性，设置前判断是否为空，保证了多次调用返回的都是一个对象，单利设计模式
 3.退出driver后一定要置空driver
+class50
+1.获取屏幕元素结构driver.page_source
+2.查找元素时 记得修改默认timeout=2
+3.基于坐标滑动屏幕driver.swipe(开始坐标,结束坐标)
+
 
 
