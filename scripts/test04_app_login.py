@@ -17,7 +17,7 @@ class TestAppLogin():
 
     #销毁
     def teardown_class(self):
-        sleep(5)
+        sleep(2)
         GetDriver.quit_app_driver()
     #测试业务方法
     def test_app_login(self):

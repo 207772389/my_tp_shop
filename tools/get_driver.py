@@ -51,7 +51,6 @@ class GetDriver:
             desired_caps["appPackage"] = page.appPackage
             desired_caps["appActivity"] = page.appActivity
             cls.__app_driver = appium.webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-        print("*************app_driver************是：",cls.__app_driver)
         return cls.__app_driver
 
     @classmethod

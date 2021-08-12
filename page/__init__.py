@@ -123,5 +123,12 @@ app_login_btn=(By.ID,"com.picooc:id/btn_login")
 #进入首页后 通过获取页面顶部的 首页 文案，来判断登录成功了。注意：这里返回的是元素列表，记得取第一个即可
 app_login_success=(By.ID,"com.picooc:id/tv_tab_name")
 
-#滑动区域
-app_channel_area = By.XPATH,"//*[@class='android.widget.HorizontalScrollView']"
+"""以下为进入APP的社区 操作滑动区域的配置信息"""
+#底部tab 社区
+app_tab_community =(By.ID,"com.picooc:id/tab_rb_d")
+#社区顶部滑动区域
+app_community_up_scroll = (By.XPATH,"//*[@bounds='[0,120][1080,264]']")
+#社区顶部的 问答 选项
+app_community_up_qa = (By.XPATH,"//*[@text='问答']")
+#社区里跳转到具体某个tab后 执行上下滑动操作 来查找某个元素
+app_community_middle_area= (By.XPATH,"//*[@bounds = '[0,264][1080,2165]']")

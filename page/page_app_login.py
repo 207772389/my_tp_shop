@@ -47,4 +47,15 @@ class PageAppLogin(AppBase):
         self.applogin_click_login_btn()
         self.applogin_homepage_get_text()
 
+    #登录成功方法》给别的需要先登录的业务调用
+    # 把登录过程 业务组合下
+    def applogin_login_app_success(self, phone="17611240359", pwd="a1234567"):
+        log.info("开始调用app登录了，登录用户名是：{}，密码是：{}".format(phone,pwd))
+        self.applogin_click_login_enter()
+        self.applogin_input_phone_num(phone)
+        self.applogin_agree_check()
+        self.applogin_click_next_btn()
+        self.applogin_input_pwd(pwd)
+        self.applogin_click_login_btn()
+        self.applogin_homepage_get_text()
 
